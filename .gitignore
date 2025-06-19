@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+backend/.venv/
+.pytest_cache/
+
+# Node / Tauri
+frontend/node_modules/
+frontend/src-tauri/target/
+frontend/dist/
+frontend/dist-ssr/
+
+# Application Data & Logs 
+/data/
+/logs/
+/workspace/
+
+# IDE & OS specific
+.vscode/
+.idea/
+.DS_Store
+
+# Secrets
+.env
+*.env.local
