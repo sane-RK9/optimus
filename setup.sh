@@ -35,7 +35,10 @@ fi
 
 # Activate venv and install dependencies
 source backend/venv/bin/activate
+echo "Installing production dependencies..."
 pip install -r backend/requirements.txt
+echo "Installing development dependencies..."
+pip install -r backend/requirements-dev.txt
 deactivate
 
 echo "Python backend dependencies installed."
