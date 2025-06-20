@@ -1,9 +1,9 @@
 # --- Testing Framework ---
-pytest==8.2.1
-pytest-cov==5.0.0   # For checking test coverage
-pytest-asyncio==0.23.6 # For testing async FastAPI/LangChain code
+pytest>=8.2.1
+pytest-cov>=5.0.0   # For checking test coverage
+pytest-asyncio>=0.23.6 # For testing async FastAPI/LangChain code
 
 # --- Code Quality & Formatting ---
-black==24.4.2       # The uncompromising code formatter
-ruff==0.4.4         # linter and code formatter
-mypy==1.10.0        #  For static type checking
+black>=24.4.2       # The uncompromising code formatter
+ruff>=0.4.4         # linter and code formatter
+mypy>=1.10.0        #  For static type checking
