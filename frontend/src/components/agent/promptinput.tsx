@@ -1,16 +1,23 @@
-// frontend/src/components/agent/PromptInput.tsx
 import React, { useState } from 'react';
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
 import TextareaAutosize from 'react-textarea-autosize';
 import { Button } from '../ui/button';
 
-export const PromptInput: React.FC = () => {
+interface PromptInputProps {
+  onSendMessage?: (message: string) => void;
+  disabled?: boolean;
+}
+
+export const PromptInput: React.FC<PromptInputProps> = ({ 
+  onSendMessage, 
+  disabled = false 
+}) => {
   const [prompt, setPrompt] = useState('');
 
   const handleSubmit = () => {
-    if (!prompt.trim()) return;
-    console.log("Submitting prompt:", prompt);
-    // In Phase 3, this will call the API
+    if (!prompt.trim() || disabled) return;
+    
+    onSendMessage?.(prompt.trim());
     setPrompt('');
   };
 
@@ -22,21 +29,31 @@ export const PromptInput: React.FC = () => {
   };
 
   return (
-    <div className="shrink-0 border-t border-gray-200 bg-white px-4 py-3">
-      <div className="relative rounded-lg border border-gray-300 shadow-sm">
+    <div className="p-4">
+      <div className="relative flex items-end gap-3 rounded-lg border border-gray-300 bg-white shadow-sm focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500">
         <TextareaAutosize
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder="Ask the agent to do something..."
-          className="w-full resize-none border-0 bg-transparent p-3 pr-16 text-gray-800 focus:ring-0"
-          maxRows={5}
+          className="flex-1 resize-none border-0 bg-transparent p-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0"
+          maxRows={6}
+          minRows={1}
+          disabled={disabled}
         />
-        <div className="absolute right-2 top-1/2 -translate-y-1/2">
-          <Button onClick={handleSubmit} className="!p-2">
-            <PaperAirplaneIcon className="h-5 w-5" />
+        <div className="p-2">
+          <Button
+            onClick={handleSubmit}
+            disabled={!prompt.trim() || disabled}
+            className="!p-2 !bg-blue-600 hover:!bg-blue-700 disabled:!bg-gray-300"
+            title="Send message"
+          >
+            <PaperAirplaneIcon className="h-4 w-4" />
           </Button>
         </div>
+      </div>
+      <div className="mt-2 text-xs text-gray-500">
+        Press Enter to send, Shift+Enter for new line
       </div>
     </div>
   );
