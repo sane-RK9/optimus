@@ -9,13 +9,11 @@ export const MessageItem: React.FC<MessageItemProps> = ({ message }) => {
   const isUser = message.role === 'user';
 
   return (
-    <div className={`flex items-start gap-3 ${isUser ? 'justify-end' : 'justify-start'}`}>
-      {/* Avatar Placeholder */}
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white ${isUser ? 'bg-blue-500' : 'bg-green-600'}`}>
+    <div className={`flex items-start gap-4 ${isUser ? 'justify-end' : 'justify-start'}`}>
+      <div className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full text-white ${isUser ? 'bg-blue-600' : 'bg-green-600'}`}>
         {isUser ? 'U' : 'A'}
       </div>
-
-      <div className={`p-3 rounded-lg max-w-xl ${isUser ? 'bg-blue-100' : 'bg-gray-100'}`}>
+      <div className={`max-w-2xl rounded-lg px-4 py-3 shadow-sm ${isUser ? 'bg-blue-100' : 'bg-gray-100'}`}>
         {isUser ? (
           <p className="text-gray-800">{message.content}</p>
         ) : (
